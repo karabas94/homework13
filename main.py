@@ -39,7 +39,7 @@ class Folder:
         """
         Create dictionary with attribute for names of files and names of folder incide initial folder
         """
-        dictionary = {}.fromkeys(["filenames", "dirnames"])
+        dictionary = {}
         filenames = []
         dirnames = []
         for elements in os.listdir(self.dirname):
@@ -56,10 +56,11 @@ class Folder:
         Sorted dictionary by bool parameter
         """
         new_dict = {}
-        val_lists = self.my_dict().values()
+        old_dict = self.my_dict()
+        val_lists = old_dict.values()
         for val_list in val_lists:
             val_list.sort(reverse=bo_ol)
-            for key, value in self.my_dict().items():
+            for key, value in old_dict.items():
                 if value == val_list:
                     new_dict[key] = value
         return new_dict
@@ -82,5 +83,5 @@ class Folder:
 
 obj = Folder("test")
 print(obj.my_dict())
-print(obj.sort_dict(False))
+print(obj.sort_dict(True))
 print(obj.new_dict("tt.txt"))
